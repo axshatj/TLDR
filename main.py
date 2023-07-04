@@ -25,7 +25,12 @@ class ArticleSummarizer(QMainWindow):
 
         # Set the extracted values in their respective QTextEdit widgets
         self.title.setPlainText(article.title)
-        self.author.setPlainText(article.authors[0])
+        AU = ""
+        if(len(article.authors)>0) :
+            AU = article.authors[0]
+        else:
+            AU = "No author found"
+        self.author.setPlainText(AU)
         self.summary.setPlainText(article.summary)
 
         # Perform sentiment analysis on the article's text
@@ -33,6 +38,9 @@ class ArticleSummarizer(QMainWindow):
         polarity = analysis.polarity
         sentiment = "positive" if polarity > 0 else "negative" if polarity < 0 else "neutral"
         self.sentiment.setPlainText(f'Polarity: {polarity}, sentiment: {sentiment}')
+
+    def close_application(self):
+        self.close()
 
     def setup_ui(self):
         central_widget = QWidget(self)
@@ -121,6 +129,27 @@ class ArticleSummarizer(QMainWindow):
         layout.addWidget(btn)
 
         btn.clicked.connect(self.summarize)  # Connect the clicked signal to the summarize function
+
+        # Close button
+        close_btn = QPushButton("Close")
+        close_btn.setStyleSheet(
+            "QPushButton {"
+            "   min-width: 100px;"
+            "   height: 40px;"
+            "   font-size: 14px;"
+            "   font-weight: bold;"
+            "   background-color: #f44336;"
+            "   color: white;"
+            "   border-radius: 5px;"
+            "}"
+            "QPushButton:hover {"
+            "   background-color: #d32f2f;"
+            "   cursor: pointer;"
+            "}"
+        )
+        layout.addWidget(close_btn)
+
+        close_btn.clicked.connect(self.close_application)  # Connect the clicked signal to the close_application function
 
         self.show()
 
