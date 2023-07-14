@@ -11,6 +11,3 @@ pip install -r requirements.txt
 
 💬textblob: With the textblob library, my app brings sophisticated natural language processing (NLP) capabilities to the forefront. </br>
 </t>By harnessing the power of textblob, the app performs advanced linguistic analysis, including sentiment analysis
-            
-🖥 PyQt5: Powered by the versatile PyQt5 library, my app offers a sleek and user-friendly graphical interface. </br>
-</t>PyQt5 enables seamless integration between Python and the graphical components, empowering you to interact with the app effortlessly. 
